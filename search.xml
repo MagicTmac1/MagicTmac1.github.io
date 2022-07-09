@@ -4,13 +4,19 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2022/07/09/test/"/>
-      <url>/2022/07/09/test/</url>
+      <title>hexo搭建博客遇到的问题</title>
+      <link href="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
       
-        <content type="html"><![CDATA[<p>        <span class="lazyload-img-span">        <img              data-src="/2022/07/09/test/image-20220709224727045.png" >        </sapn>      </p>]]></content>
+        <content type="html"><![CDATA[<h4 id="使用MarkDown的相关问题"><a href="#使用MarkDown的相关问题" class="headerlink" title="使用MarkDown的相关问题"></a>使用MarkDown的相关问题</h4><p>在写文章的时候，我们可以插入图片和相关资源使得文章更加丰富生动，但是在本地写<code>MarkDown</code>文件时，上传的本地图片是无法实现在网络上或是在另外一台设备上访问的。我在完成基于github使用hexo博客的搭建后，我发现了一些问题，关于 gitalk评论模块的一些坑我已经写在<a href="https://magictmac1.github.io/2022/07/07/Hexo%20_Themes/">themes</a>那片博客里了，剩下的一些写在这里。</p><h4 id="文章内容显示不全"><a href="#文章内容显示不全" class="headerlink" title="文章内容显示不全"></a>文章内容显示不全</h4><p>​        我在生产部署之后进行 <code>hexo s</code> 本地测试的时候发现我的使用了图片的文章都显示不全，而且很统一的在文章第一个出现图片的地方之后就不显示接下来的内容了，而没有图片的hexo初始化就自带的 <code>hello world </code> 就没有出现这样的情况，因为已经修复了就不放bug图了，直接说解决方法吧。</p><h4 id="办法一：同名目录-相对路径"><a href="#办法一：同名目录-相对路径" class="headerlink" title="办法一：同名目录 + 相对路径"></a>办法一：同名目录 + 相对路径</h4><p>​在使用<code>Hexo</code>写博客时，每一篇文章创建一个同名目录，并在这个同名目录中放置需要插入的图片文件，在<code>MarkDown</code>文章中插入使用图片的相对路径，然后在部署博客的时候也一同将这个文件夹上传到服务器。</p><ol><li><p>修改配置文件<code>_config.yml</code>使得每一次新建文章的时候自动生成同名目录。</p><pre><code>post_asset_folder: true</code></pre></li></ol><p>        <span class="lazyload-img-span">        <img              data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709231637109-7379806.png" >        </sapn>      </p><p>2.修改MarkDown编辑器配置，实现粘贴图片时自动将图片文件复制一份到所对应的同名目录。</p><p>我使用的Typora编辑MarkDown文件，通过<code>ctrl + ,</code> 打开Typora的设置，并按图片中完成相关设置。</p><pre><code>./$&#123;filename&#125;</code></pre><p>        <span class="lazyload-img-span">        <img              data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709231938664.png" >        </sapn>      </p><p>完成这样的设置后，每当我们在<code>Typora</code>中粘贴图片的时候就会将图片复制到同名目录下。</p><p>但是需要注意的是，这样上传到<code>Hexo</code>依旧不能解决图片无法访问的问题，因为图片的路径还是本地的路径，只是这个图片所属的本地的文件夹是和文章同名的。        <span class="lazyload-img-span">        <img              data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709232619983.png" >        </sapn>      </p><p>解决办法：将绝对路径变成相对路径，这样在<code>Hexo</code>服务器上就会自动的在与文章同名的那个文件夹里面找图片文件，所以只需要删去前面的一部分，只留下图片的文件名。</p><p>这样做可以实现在博客上能展现图片了，但是有一个弊端就是本地是看不见图片的了。本地效果如下：        <span class="lazyload-img-span">        <img              data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709232757605.png" >        </sapn>      </p><p>总结这个方法：</p><p>本地看不到图片的效果，但是上传至Hexo后是可以查看的，能解决Hexo上查看本地图片的问题。<br>但是仍然不能解决Hexo以外的诸多博客平台的本地图片访问问题，对于CSDN、简书来说它都有自己的图床，所以可以上传到对应平台的图床，然后用网络的链接访问图片。<br>使得Hexo文件变得臃肿，随着博客文章的积累，用到的图片会在每次部署和上传到服务器时一并被携带上传，造成部署和上传的压力，使得上传的速度变得很慢。<br>由于博客部署在GitHub Pages，就会导致加载博客文章时，一大部分时间用于请求Github Pages服务器加载图片文件，再加上Github Pages服务器在大陆访问有时很慢的情况，使得博客网页加载奇慢无比。<br>综上，这个办法并不是长久有效的。</p><h4 id="方法二：OSS对象存储-PicGo（图床）"><a href="#方法二：OSS对象存储-PicGo（图床）" class="headerlink" title="方法二：OSS对象存储 + PicGo（图床）"></a>方法二：OSS<a href="https://so.csdn.net/so/search?q=%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8&spm=1001.2101.3001.7020">对象存储</a> + PicGo（图床）</h4><p>待更新。。。</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
       
     </entry>
     
