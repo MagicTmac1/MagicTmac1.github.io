@@ -141,8 +141,14 @@
         <!-- top型目录 -->
         
         <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>在 Hexo 中有两份主要的配置文件，其名称都是 <code>_config.yml</code>。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。</p>
-<p>为了描述方便，在以下说明中，将前者称为 <strong>站点配置文件</strong>， 后者称为 <strong>主题配置文件</strong>。这个是模版的<a target="_blank" rel="noopener" href="https://fushaolei.github.io/hexo-theme-white/archives/">网站</a></p>
+<p>为了描述方便，在以下说明中，将前者称为 <strong>站点配置文件</strong>， 后者称为 <strong>主题配置文件</strong>。这个是模版的<a target="_blank" rel="noopener" href="https://fushaolei.github.io/hexo-theme-white/archives/">demo</a>和<a target="_blank" rel="noopener" href="https://github.com/FuShaoLei/hexo-theme-white">github仓库</a></p>
 <h3 id="white主题配置（目前只学会用一个）"><a href="#white主题配置（目前只学会用一个）" class="headerlink" title="white主题配置（目前只学会用一个）"></a><a target="_blank" rel="noopener" href="https://github.com/MagicTmac1/hexo-theme-white">white</a>主题配置（目前只学会用一个）</h3><p>进入站点目录下的themes目录，将主题包下载到本地，然后修改站点配置文件_config.yml中的theme为下载下来的主题包的名字（<strong>这两个一定要相同！</strong>）</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/image-20220707223349235.png" >
+        </sapn>
+      </p>
 <h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><blockquote>
 <p>其实config文件里写的很明白了，现在就重新列一下，添加一些不必要的说明</p>
 </blockquote>
@@ -189,7 +195,7 @@ site_name: white（对应下面的这个浏览器标签）
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/Users/ouyangcan/MyBlog/source/_posts/imgs/image-20220707223848938.png" >
+           data-src="/2022/07/07/Hexo%20_Themes/image-20220707223848938.png" >
         </sapn>
       </p>
 <h3 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h3><pre><code class="yml">menu:
@@ -281,42 +287,37 @@ comments:
     dataUid: #安装代码中 data-uid 后面数据
 </code></pre>
 <h3 id="Gitalk配置教程"><a href="#Gitalk配置教程" class="headerlink" title="Gitalk配置教程"></a>Gitalk配置教程</h3><p>先配置一下 Git <a target="_blank" rel="noopener" href="https://github.com/settings/developers">https://github.com/settings/developers</a> 然后选择 OAuth Apps 点击 New OAuth App，</p>
-
+<p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/Users/ouyangcan/MyBlog/source/_posts/imgs/image-20220707230340057.png" >
+           data-src="/2022/07/07/Hexo%20_Themes/image-20220707230340057.png" >
         </sapn>
-      
-
+      </p>
 <p>这里注意HomePage URL和callback URL一定要一样！</p>
-
+<p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/Users/ouyangcan/MyBlog/source/_posts/imgs/image-20220707230415924.png" >
+           data-src="/2022/07/07/Hexo%20_Themes/image-20220707230415924.png" >
         </sapn>
-      
-
+      </p>
 <p>做完这些基本就ok了，然后点进去绑定初始化一下，就完成啦！</p>
-
+<p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/Users/ouyangcan/MyBlog/source/_posts/imgs/image-20220707230649318.png" >
+           data-src="/2022/07/07/Hexo%20_Themes/image-20220707230649318.png" >
         </sapn>
-      
-
+      </p>
 <blockquote>
 <p><strong>这里写一下遇到的一些问题吧</strong></p>
 <p>gitalk的坑，一个是repo这里 写的应该是<strong>仓库名</strong>，而不是仓库链接或者其他的东西，然后gitalk要上线部署一次才可以，md文件名字最好用英文来命名，如果用中文的话，超出50个字符将会初始化失败，<a target="_blank" rel="noopener" href="https://blog.csdn.net/Keith_Prime/article/details/111604291">Gitalk Error: Validation Failed</a>。</p>
 <p>在讲gitalk进行初始化的时候，repo其实不需要重新创建一个仓库（我一开始创建了一个仓库，写的那个仓库的名称，一直出现那个<code>NetWork Error</code>的报错，后来我改成我用来当站点的那个仓库的名称就ok了🤔）</p>
 <p>当我试着把原来的中文名称改为英文时，出现了404的错误，要记得把下图所示的两个地方改为相同的，不然就会出错。将md文件名重新换一个名字，md文档里面的<code>title</code>也要更换。再进行<code>hexo cl</code>、<code>hexo g</code> 、<code>hexo d</code>。</p>
-
+<p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/Users/ouyangcan/MyBlog/source/_posts/imgs/image-20220707224539518.png" >
+           data-src="/2022/07/07/Hexo%20_Themes/image-20220707224539518.png" >
         </sapn>
-      
-
-
+      </p>
 </blockquote>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code class="yml"># 页脚
 footer: Power by [Hexo](http://hexo.io/) Theme by [White](https://github.com/FuShaoLei/hexo-theme-white) # markdown语法
