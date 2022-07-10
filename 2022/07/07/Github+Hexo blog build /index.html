@@ -147,11 +147,10 @@
 4. NexT主题配置
 </code></pre>
 <h2 id="1-Github上创建远程仓库"><a href="#1-Github上创建远程仓库" class="headerlink" title="1.Github上创建远程仓库"></a>1.Github上创建远程仓库</h2><p>首先要在Github上创建一个新的指定命名的远程仓库（当然没有账号要先注册啦）</p>
-<p>按照如图所示的方式创建Repository。</p>
-<p>
+<p>按照如图所示的方式创建Repository。
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707112250630.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110002698.png" >
         </sapn>
       </p>
 <p><strong>使用Git Pages配置远程仓库</strong><br>在不购买服务器的前提下，我们的网站需要挂在<a target="_blank" rel="noopener" href="https://pages.github.com/">GitHub Pages</a>上。GitHub Pages是面向用户、组织和项目开放的公共静态页面搭建托管服务，可用于搭建个人博客。</p>
@@ -164,13 +163,13 @@
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707112105637.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110003640.png" >
         </sapn>
       </p>
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707112954229.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110003360.png" >
         </sapn>
       </p>
 <h2 id="2-HomeBrew-Git-hexo-npm套件安装"><a href="#2-HomeBrew-Git-hexo-npm套件安装" class="headerlink" title="2.HomeBrew ,Git,hexo,npm套件安装"></a>2.HomeBrew ,Git,hexo,npm套件安装</h2><pre><code>1.自行安装homebrew，然后可通过brew安装git和node.js
@@ -180,7 +179,7 @@ brew install node
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707105424122.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110004866.png" >
         </sapn>
       </p>
 <pre><code>2.npm install -g hexo-cli  
@@ -196,7 +195,7 @@ $ npm install
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707110019450.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110004469.png" >
         </sapn>
       </p>
 <p>新建完成后，得到以下目录：</p>
@@ -219,14 +218,14 @@ $ hexo server
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707110200235.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110005787.png" >
         </sapn>
       </p>
 <p>按命令行提示，打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到默认主题的默认页面了。<br>可能加载会很慢，因为默认主题中使用了些Google的资源，后面更换主题就会快很多了。</p>
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707110238721.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110006186.png" >
         </sapn>
       </p>
 <h2 id="3-配置远程仓库"><a href="#3-配置远程仓库" class="headerlink" title="3.配置远程仓库"></a>3.配置远程仓库</h2><p>打开前面创建的blog目录下的 <strong>_config.yml</strong> 文件，在修改最下方的<strong>deploy</strong>为：（<strong>注意，冒号后面一定要加空格</strong>）</p>
@@ -247,7 +246,7 @@ $ hexo deploy
 <p>当提示 <strong>INFO Deploy done: git</strong> 即上传成功，这时就可以通过仓库地址来访问你的个人站点了。<br>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220707114048838.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207110007057.png" >
         </sapn>
       </p>
 <h3 id="常用Hexo命令"><a href="#常用Hexo命令" class="headerlink" title="常用Hexo命令"></a>常用Hexo命令</h3><pre><code>hexo init       //在指定目录执行该命令，会将当前目录初始化为hexo站点，生成hexo站点所需的一切文件

@@ -147,14 +147,14 @@
 <li><p>修改配置文件<code>_config.yml</code>使得每一次新建文章的时候自动生成同名目录。（方法二中其实就不需要这个选项了，使用方法二可以改为false）</p>
 <pre><code>post_asset_folder: true
 </code></pre>
-</li>
-</ol>
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220709231637109-7379806.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102347474.png" >
         </sapn>
       </p>
+</li>
+</ol>
 <p>2.修改MarkDown编辑器配置，实现粘贴图片时自动将图片文件复制一份到所对应的同名目录。</p>
 <p>我使用的Typora编辑MarkDown文件，通过<code>ctrl + ,</code> 打开Typora的设置，并按图片中完成相关设置。</p>
 <pre><code>./$&#123;filename&#125;
@@ -162,21 +162,21 @@
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220709231938664.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102351926.png" >
         </sapn>
       </p>
 <p>完成这样的设置后，每当我们在<code>Typora</code>中粘贴图片的时候就会将图片复制到同名目录下。</p>
 <p>但是需要注意的是，这样上传到<code>Hexo</code>依旧不能解决图片无法访问的问题，因为图片的路径还是本地的路径，只是这个图片所属的本地的文件夹是和文章同名的。
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220709232619983.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102351025.png" >
         </sapn>
       </p>
 <p>解决办法：将绝对路径变成相对路径，这样在<code>Hexo</code>服务器上就会自动的在与文章同名的那个文件夹里面找图片文件，所以只需要删去前面的一部分，只留下图片的文件名。</p>
 <p>这样做可以实现在博客上能展现图片了，但是有一个弊端就是本地是看不见图片的了。本地效果如下：
         <span class="lazyload-img-span">
         <img   
-           data-src="/image-20220709232757605.png" >
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102352359.png" >
         </sapn>
       </p>
 <p>总结这个方法：</p>
