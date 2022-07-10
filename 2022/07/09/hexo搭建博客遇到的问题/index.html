@@ -144,7 +144,7 @@
 <h4 id="文章内容显示不全"><a href="#文章内容显示不全" class="headerlink" title="文章内容显示不全"></a>文章内容显示不全</h4><p>​        我在生产部署之后进行 <code>hexo s</code> 本地测试的时候发现我的使用了图片的文章都显示不全，而且很统一的在文章第一个出现图片的地方之后就不显示接下来的内容了，而没有图片的hexo初始化就自带的 <code>hello world </code> 就没有出现这样的情况，因为已经修复了就不放bug图了，直接说解决方法吧。</p>
 <h4 id="办法一：同名目录-相对路径"><a href="#办法一：同名目录-相对路径" class="headerlink" title="办法一：同名目录 + 相对路径"></a>办法一：同名目录 + 相对路径</h4><p>​		在使用<code>Hexo</code>写博客时，每一篇文章创建一个同名目录，并在这个同名目录中放置需要插入的图片文件，在<code>MarkDown</code>文章中插入使用图片的相对路径，然后在部署博客的时候也一同将这个文件夹上传到服务器。</p>
 <ol>
-<li><p>修改配置文件<code>_config.yml</code>使得每一次新建文章的时候自动生成同名目录。</p>
+<li><p>修改配置文件<code>_config.yml</code>使得每一次新建文章的时候自动生成同名目录。（方法二中其实就不需要这个选项了，使用方法二可以改为false）</p>
 <pre><code>post_asset_folder: true
 </code></pre>
 </li>
@@ -152,7 +152,7 @@
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709231637109-7379806.png" >
+           data-src="/image-20220709231637109-7379806.png" >
         </sapn>
       </p>
 <p>2.修改MarkDown编辑器配置，实现粘贴图片时自动将图片文件复制一份到所对应的同名目录。</p>
@@ -162,26 +162,75 @@
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709231938664.png" >
+           data-src="/image-20220709231938664.png" >
         </sapn>
       </p>
 <p>完成这样的设置后，每当我们在<code>Typora</code>中粘贴图片的时候就会将图片复制到同名目录下。</p>
 <p>但是需要注意的是，这样上传到<code>Hexo</code>依旧不能解决图片无法访问的问题，因为图片的路径还是本地的路径，只是这个图片所属的本地的文件夹是和文章同名的。
         <span class="lazyload-img-span">
         <img   
-           data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709232619983.png" >
+           data-src="/image-20220709232619983.png" >
         </sapn>
       </p>
 <p>解决办法：将绝对路径变成相对路径，这样在<code>Hexo</code>服务器上就会自动的在与文章同名的那个文件夹里面找图片文件，所以只需要删去前面的一部分，只留下图片的文件名。</p>
 <p>这样做可以实现在博客上能展现图片了，但是有一个弊端就是本地是看不见图片的了。本地效果如下：
         <span class="lazyload-img-span">
         <img   
-           data-src="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20220709232757605.png" >
+           data-src="/image-20220709232757605.png" >
         </sapn>
       </p>
 <p>总结这个方法：</p>
 <p>本地看不到图片的效果，但是上传至Hexo后是可以查看的，能解决Hexo上查看本地图片的问题。<br>但是仍然不能解决Hexo以外的诸多博客平台的本地图片访问问题，对于CSDN、简书来说它都有自己的图床，所以可以上传到对应平台的图床，然后用网络的链接访问图片。<br>使得Hexo文件变得臃肿，随着博客文章的积累，用到的图片会在每次部署和上传到服务器时一并被携带上传，造成部署和上传的压力，使得上传的速度变得很慢。<br>由于博客部署在GitHub Pages，就会导致加载博客文章时，一大部分时间用于请求Github Pages服务器加载图片文件，再加上Github Pages服务器在大陆访问有时很慢的情况，使得博客网页加载奇慢无比。<br>综上，这个办法并不是长久有效的。</p>
-<h4 id="方法二：OSS对象存储-PicGo（图床）"><a href="#方法二：OSS对象存储-PicGo（图床）" class="headerlink" title="方法二：OSS对象存储 + PicGo（图床）"></a>方法二：OSS<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8&spm=1001.2101.3001.7020">对象存储</a> + PicGo（图床）</h4><p>待更新。。。</p>
+<h4 id="方法二：Github-PicGo"><a href="#方法二：Github-PicGo" class="headerlink" title="方法二：Github + PicGo"></a>方法二：Github + PicGo</h4><p>因为上一个方法每一次都需要重新将之前的图片资源重复部署，导致速度越来越慢，不是一个一劳永逸的方法，所以我找到了更好的方法，那就是使用<strong>图床</strong>。</p>
+<p>图床网上也有很多免费的，但是大部分都不靠谱，如果放在免费的图床上我们需要米娜对一一些问题：</p>
+<ol>
+<li>网络图床有可能突然就不维护了，那么我们放的图片也就不翼而飞了，而如果你的图片又没有备份的话，那么所有用到这些图片的文件都会被涉及到，这些图片也就访问不了，消失在网络的大海里。</li>
+<li>免费的图床有额度限制，一般可用的空间不会太大。</li>
+<li>本地写文章时不够简便，需要每张图片手动上传。</li>
+</ol>
+<p>但是我扣，所以我选择全球最大的同性交友网站Github作为免费床图😁，接下来讲一下操作流程。</p>
+<h4 id="Github设置"><a href="#Github设置" class="headerlink" title="Github设置"></a>Github设置</h4><ul>
+<li>首先创建一个专门用来保存博客上传图片的仓库，基本操作就不演示了。</li>
+<li>然后我们生成GitHub Tokens，点击<code>Settings</code>，进入Settings后，点击左侧下方的<code>Developer settings</code>，网页跳转后，选左边的<code>Personal access tokens</code>，点击<code>Generate a personal access token</code>，<code>Note</code>这里填写为什么创建这个Token，可随意填写，下方勾上<code>repo</code>即可。然后滑到最下方点击<code>Generate token</code>。然后会生成一条Token信息，生成的Token只会出现一次，记得复制保存。（省略了一些简单的步骤的截图，大家应该都懂）</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102319201.png" >
+        </sapn>
+      
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102321616.png" >
+        </sapn>
+      
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102326868.jpg" >
+        </sapn>
+      </p>
+<h4 id="Typora设置"><a href="#Typora设置" class="headerlink" title="Typora设置"></a>Typora设置</h4><ul>
+<li><p>打开Typora，点击左上角菜单栏的<code>Typora</code>，点击弹出框里下方的<code>偏好设置</code>，（macOS是这样，Win的自行搜索）设置成如下。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102329445.png" >
+        </sapn>
+      </p>
+</li>
+</ul>
+<h4 id="PicGo设置"><a href="#PicGo设置" class="headerlink" title="PicGo设置"></a>PicGo设置</h4><p>  打开运行PicGo，左侧打开打开详细窗口，选择图床设置（Github图床）。<br>  参数设置说明：</p>
+<p>  仓库名：表示远程仓库地址，固定格式 Github用户名&#x2F;仓库名，前期准备用到的仓库<br>  分支名：表示分支，默认填入master，需要根据自己Github上的分支进行填写，看个人设置<br>  Token：填入Github中生成的Token，就是让复制保存的那个<br>  存储路径：可以自定义一个文件路径<br>  自定义域名：建议使用https:cdn.jsdelivr.net&#x2F;gh&#x2F;Github用户名&#x2F;仓库名<br>  最后记得设为默认图床，然后在正式使用的时候会进行i个测试，会告诉你测试结果是否成功。（macOS和Win不一样，WIn好像设置里有测试的选项，macOS没有）我是测试完了之后再写的，所以没有截图。<br>  
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207102332415.png" >
+        </sapn>
+      </p>
+<p>完成上述的步骤就完成所以的配置了，可以<code>hexo new test</code>新建一个文件上传图片测试一下了，</p>
+<h4 id="Tips：快捷键及相关配置"><a href="#Tips：快捷键及相关配置" class="headerlink" title="Tips：快捷键及相关配置"></a>Tips：快捷键及相关配置</h4><p>支持快捷键command+shift+p（macOS）或者control+shift+p（windows\linux）用以支持快捷上传剪贴板里的图片（第一张）。</p>
+<p>PicGo支持自定义快捷键，使用方法见配置手册。</p>
+<p>注：可以将快捷键设置为ctrl+shift+c</p>
+<p>总结<br>将上面的步骤都设置好，每次截图之后，都可以按一下ctrl+shift+c，这样就会将剪切板上面的截图转化为在线网络图片链接，简直就是爽的不要不要的，关键是背靠 GitHub ，比自建服务器都稳！</p>
 
         <!-- 分类文章 -->
         
