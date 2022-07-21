@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>go面试错题</title>
+      <link href="/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/"/>
+      <url>/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h4 id="Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。"><a href="#Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。" class="headerlink" title="Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。"></a>Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。</h4><p>不正确，Cgo不支持C++，但是可以通过C来封装C++的方法实现Cgo调用。</p><h4 id="对于以下代码，描述正确的是"><a href="#对于以下代码，描述正确的是" class="headerlink" title="对于以下代码，描述正确的是:"></a>对于以下代码，描述正确的是:</h4><pre><code>package mainimport (    &quot;fmt&quot;    &quot;sync&quot;)func main() &#123;    var wg sync.WaitGroup    intSlice := []int&#123;1, 2, 3, 4, 5&#125;    wg.Add(len(intSlice))    ans1, ans2 := 0, 0    for _, v := range intSlice &#123;        vv := v        go func() &#123;            defer wg.Done()            ans1 += v            ans2 += vv        &#125;()    &#125;    wg.Wait()    fmt.Printf(&quot;ans1:%v,ans2:%v&quot;, ans1, ans2)    return&#125;</code></pre><pre><code>ans1不一定是 15， ans2 不一定是 15.</code></pre><p>闭包只是绑定的v这个变量，当goruntine执行时可能for循环已经执行，v的值已经变化。</p><p>个人理解可能当其中一个v赋值为1时，另外一个goruntine中的v也是1，不一定满足1+2+3+4+5。</p><h4 id="关于slice或map操作，下面正确的是（）"><a href="#关于slice或map操作，下面正确的是（）" class="headerlink" title="关于slice或map操作，下面正确的是（）"></a>关于slice或map操作，下面正确的是（）</h4><p>        <span class="lazyload-img-span">        <img              data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207211831356.png" >        </sapn>      </p><pre><code>A，C，D</code></pre><p>make只用来创建slice,map,channel。 其中map使用前必须初始化。 append可直接动态扩容slice，也就是说空切片可以直接append，而map不行。</p><h4 id="关于go-vendor，下面说法正确的是（"><a href="#关于go-vendor，下面说法正确的是（" class="headerlink" title="关于go vendor，下面说法正确的是（"></a>关于go vendor，下面说法正确的是（</h4><pre><code>A。基本思路是将引用的外部包的源代码放在当前工程的vendor目录下面B。编译go代码会优先从vendor目录先寻找依赖包C。可以指定引用某个特定版本的外部包D。有了vendor目录后，打包当前的工程代码到其他机器的$GOPATH/src下都可以通过编译</code></pre><pre><code>A，B，D</code></pre><p>go vendor无法精确的引用外部包进行版本控制，不能指定引用某个特定版本的外部包；只是在开发时，将其拷贝过来，但是一旦外部包升级,vendor下的代码不会跟着升级，而且vendor下面并没有元文件记录引用包的版本信息，推荐go mod ，go mod 已经完美支持各模块的版本控制。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试错题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面试错题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2022/07/15/%E5%9C%A8%E6%88%91%E4%BB%AC%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E4%B8%AD%E5%BE%80%E5%BE%80%E9%9C%80%E8%A6%81%E9%9D%A2%E5%AF%B9%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9A/"/>
+      <url>/2022/07/15/%E5%9C%A8%E6%88%91%E4%BB%AC%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E4%B8%AD%E5%BE%80%E5%BE%80%E9%9C%80%E8%A6%81%E9%9D%A2%E5%AF%B9%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9A/</url>
+      
+        <content type="html"><![CDATA[<p>在我们进行数据传输中往往需要面对如下图所示的一些问题：![截屏2022-07-14 21.12.31](&#x2F;Users&#x2F;ouyangcan&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;截屏2022-07-14 21.12.31.png)</p><p>对称加（解）密的三要素：</p><p><em>明文（发送的数据）、加密算法（以什么样的规则进行加密，常用的des、3des、aes）、密钥（根据算法的不同，密钥的长度不同）</em>。解密与之相反</p><p>这里介绍一个经典的对称加密算法：凯撒算法</p><p>        <span class="lazyload-img-span">        <img              data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207142126445.png" >        </sapn>      </p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo搭建博客遇到的问题</title>
       <link href="/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
       <url>/2022/07/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>

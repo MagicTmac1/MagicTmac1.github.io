@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Search |    欧阳灿的博客</title>
+  <title>  Go面试错题 |    欧阳灿的博客</title>
   <meta name="description" content="不但要记录自己的努力，还要记录生活中的美好。">
   <!-- 标签页图标 -->
   
@@ -129,8 +129,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">search</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">Jul 07 2022</div>
+      <div class="post-title animate__animated  animate__fadeInUp">go面试错题</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Jul 21 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -140,9 +140,96 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
+        <h4 id="Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。"><a href="#Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。" class="headerlink" title="Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。"></a>Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。</h4><p>不正确，Cgo不支持C++，但是可以通过C来封装C++的方法实现Cgo调用。</p>
+<h4 id="对于以下代码，描述正确的是"><a href="#对于以下代码，描述正确的是" class="headerlink" title="对于以下代码，描述正确的是:"></a>对于以下代码，描述正确的是:</h4><pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
+
+func main() &#123;
+    var wg sync.WaitGroup
+    intSlice := []int&#123;1, 2, 3, 4, 5&#125;
+    wg.Add(len(intSlice))
+    ans1, ans2 := 0, 0
+    for _, v := range intSlice &#123;
+        vv := v
+        go func() &#123;
+            defer wg.Done()
+            ans1 += v
+            ans2 += vv
+        &#125;()
+    &#125;
+    wg.Wait()
+    fmt.Printf(&quot;ans1:%v,ans2:%v&quot;, ans1, ans2)
+    return
+&#125;
+</code></pre>
+<pre><code>ans1不一定是 15， ans2 不一定是 15.
+</code></pre>
+<p>闭包只是绑定的v这个变量，当goruntine执行时可能for循环已经执行，v的值已经变化。</p>
+<p>个人理解可能当其中一个v赋值为1时，另外一个goruntine中的v也是1，不一定满足1+2+3+4+5。</p>
+<h4 id="关于slice或map操作，下面正确的是（）"><a href="#关于slice或map操作，下面正确的是（）" class="headerlink" title="关于slice或map操作，下面正确的是（）"></a>关于slice或map操作，下面正确的是（）</h4><p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207211831356.png" >
+        </sapn>
+      </p>
+<pre><code>A，C，D
+</code></pre>
+<p>make只用来创建slice,map,channel。 其中map使用前必须初始化。 append可直接动态扩容slice，也就是说空切片可以直接append，而map不行。</p>
+<h4 id="关于go-vendor，下面说法正确的是（"><a href="#关于go-vendor，下面说法正确的是（" class="headerlink" title="关于go vendor，下面说法正确的是（"></a>关于go vendor，下面说法正确的是（</h4><pre><code>A。基本思路是将引用的外部包的源代码放在当前工程的vendor目录下面
+B。编译go代码会优先从vendor目录先寻找依赖包
+C。可以指定引用某个特定版本的外部包
+D。有了vendor目录后，打包当前的工程代码到其他机器的$GOPATH/src下都可以通过编译
+</code></pre>
+<pre><code>A，B，D
+</code></pre>
+<p>go vendor无法精确的引用外部包进行版本控制，不能指定引用某个特定版本的外部包；只是在开发时，将其拷贝过来，但是一旦外部包升级,vendor下的代码不会跟着升级，而且vendor下面并没有元文件记录引用包的版本信息，推荐go mod ，go mod 已经完美支持各模块的版本控制。</p>
+
+        <!-- 分类文章 -->
+        
+          <div class="post-categoris-bottom">
+            <div class="post-categoris-name">面试错题</div>
+            <ul>
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+              
+            
+            
+            
+            
+            
+              
+                <li class="me base">
+                  <a  href="/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/" class="post-categoris-bottom-link">
+                  go面试错题
+                </a>
+                </li>
+              
+              
+            
+            
+            </ul>
+
+          </div>
+
         
       </div>
       <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            
+           </div>
         
       </div>
    </div>
