@@ -140,8 +140,14 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h4 id="Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。"><a href="#Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。" class="headerlink" title="Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。"></a>Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。</h4><p>不正确，Cgo不支持C++，但是可以通过C来封装C++的方法实现Cgo调用。</p>
-<h4 id="对于以下代码，描述正确的是"><a href="#对于以下代码，描述正确的是" class="headerlink" title="对于以下代码，描述正确的是:"></a>对于以下代码，描述正确的是:</h4><pre><code>package main
+        <ul>
+<li><h4 id="Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。"><a href="#Golang可以复用C-x2F-C-的模块，这个功能叫Cgo-这一说法是否正确。" class="headerlink" title="Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。"></a><strong>Golang可以复用C&#x2F;C++的模块，这个功能叫Cgo,这一说法是否正确。</strong></h4></li>
+</ul>
+<p>不正确，Cgo不支持C++，但是可以通过C来封装C++的方法实现Cgo调用。</p>
+<ul>
+<li><h4 id="对于以下代码，描述正确的是"><a href="#对于以下代码，描述正确的是" class="headerlink" title="对于以下代码，描述正确的是:"></a><strong>对于以下代码，描述正确的是:</strong></h4></li>
+</ul>
+<pre><code>package main
 
 import (
     &quot;fmt&quot;
@@ -170,7 +176,10 @@ func main() &#123;
 </code></pre>
 <p>闭包只是绑定的v这个变量，当goruntine执行时可能for循环已经执行，v的值已经变化。</p>
 <p>个人理解可能当其中一个v赋值为1时，另外一个goruntine中的v也是1，不一定满足1+2+3+4+5。</p>
-<h4 id="关于slice或map操作，下面正确的是（）"><a href="#关于slice或map操作，下面正确的是（）" class="headerlink" title="关于slice或map操作，下面正确的是（）"></a>关于slice或map操作，下面正确的是（）</h4><p>
+<ul>
+<li><h4 id="关于slice或map操作，下面正确的是（）"><a href="#关于slice或map操作，下面正确的是（）" class="headerlink" title="关于slice或map操作，下面正确的是（）"></a>关于slice或map操作，下面正确的是（）</h4></li>
+</ul>
+<p>
         <span class="lazyload-img-span">
         <img   
            data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207211831356.png" >
@@ -179,7 +188,10 @@ func main() &#123;
 <pre><code>A，C，D
 </code></pre>
 <p>make只用来创建slice,map,channel。 其中map使用前必须初始化。 append可直接动态扩容slice，也就是说空切片可以直接append，而map不行。</p>
-<h4 id="关于go-vendor，下面说法正确的是（"><a href="#关于go-vendor，下面说法正确的是（" class="headerlink" title="关于go vendor，下面说法正确的是（"></a>关于go vendor，下面说法正确的是（</h4><pre><code>A。基本思路是将引用的外部包的源代码放在当前工程的vendor目录下面
+<ul>
+<li><h4 id="关于go-vendor，下面说法正确的是（"><a href="#关于go-vendor，下面说法正确的是（" class="headerlink" title="关于go vendor，下面说法正确的是（"></a>关于go vendor，下面说法正确的是（</h4></li>
+</ul>
+<pre><code>A。基本思路是将引用的外部包的源代码放在当前工程的vendor目录下面
 B。编译go代码会优先从vendor目录先寻找依赖包
 C。可以指定引用某个特定版本的外部包
 D。有了vendor目录后，打包当前的工程代码到其他机器的$GOPATH/src下都可以通过编译
@@ -187,6 +199,83 @@ D。有了vendor目录后，打包当前的工程代码到其他机器的$GOPATH
 <pre><code>A，B，D
 </code></pre>
 <p>go vendor无法精确的引用外部包进行版本控制，不能指定引用某个特定版本的外部包；只是在开发时，将其拷贝过来，但是一旦外部包升级,vendor下的代码不会跟着升级，而且vendor下面并没有元文件记录引用包的版本信息，推荐go mod ，go mod 已经完美支持各模块的版本控制。</p>
+<ul>
+<li><h4 id="new和make有什么区别？"><a href="#new和make有什么区别？" class="headerlink" title="new和make有什么区别？"></a>new和make有什么区别？</h4></li>
+</ul>
+<p>在 Go 语言中，内置函数 <code>make</code> 仅支持 <code>slice</code>、<code>map</code>、<code>channel</code> 三种数据类型的内存创建，<strong>其返回值是所创建类型的本身，而不是新的指针引用</strong>。make的优势本质上在于 <code>make</code> 函数在初始化时，会初始化 <code>slice</code>、<code>chan</code>、<code>map</code> 类型的内部数据结构，<code>new</code> 函数并不会。例如：在 <code>map</code> 类型中，合理的长度（len）和容量（cap）可以提高效率和减少开销。</p>
+<ul>
+<li><h4 id="GMP模型能说一下嘛"><a href="#GMP模型能说一下嘛" class="headerlink" title="GMP模型能说一下嘛"></a>GMP模型能说一下嘛</h4></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/S_FMX/article/details/115771606?ops_request_misc=&request_id=&biz_id=102&utm_term=GMP%E6%A8%A1%E5%9E%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-3-115771606.142%5Ev35%5Eexperiment_28w_v1&spm=1018.2226.3001.4187">链接</a></p>
+<ul>
+<li><h4 id="进程，协程，线程的概念"><a href="#进程，协程，线程的概念" class="headerlink" title="进程，协程，线程的概念"></a>进程，协程，线程的概念</h4><p>1、进程</p>
+<pre><code>    进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动,进程是系统进行资源分配和调度的一个独立单位。每个进程都有自己的独立内存空间，拥有自己独立的堆和栈，既不共享堆，亦不共享栈，进程由操作系统调度。不同进程通过进程间通信来通信。由于进程比较重量，占据独立的内存，所以上下文进程间的切换开销（栈、寄存器、虚拟内存、文件句柄等）比较大，但相对比较稳定安全。
+</code></pre>
+<p>　　2、线程</p>
+<pre><code>    线程是进程的一个实体,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位.线程自己基本上不拥有系统资源,而拥有自己独立的栈和共享的堆，共享堆，不共享栈，线程也由操作系统调度(标准线程是这样的)。只拥有一点在运行中必不可少的资源(如程序计数器,一组寄存器和栈),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源。线程间通信主要通过共享内存，上下文切换很快，资源开销较少，但相比进程不够稳定容易丢失数据。
+</code></pre>
+<p>　　3、协程</p>
+<pre><code>   协程是一种用户态的轻量级线程，协程的调度完全由用户控制。协程和线程一样共享堆，不共享栈，协程由程序员在协程的代码里显示调度。协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈，直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。
+
+    一个应用程序一般对应一个进程，一个进程一般有一个主线程，还有若干个辅助线程，线程之间是平行运行的，在线程里面可以开启协程，让程序在特定的时间内运行。进程拥有自己独立的堆和栈，既不共享堆，亦不共享栈，进程由操作系统调度。（全局变量保存在堆中，局部变量及函数保存在栈中）
+
+线程拥有自己独立的栈和共享的堆，共享堆，不共享栈，线程亦由操作系统调度(标准线程是这样的)。
+
+协程和线程一样共享堆，不共享栈，协程由程序员在协程的代码里显示调度。
+
+一个应用程序一般对应一个进程，一个进程一般有一个主线程，还有若干个辅助线程，线程之间是平行运行的，在线程里面可以开启协程，让程序在特定的时间内运行。
+</code></pre>
+<ul>
+<li><h4 id="说一说select"><a href="#说一说select" class="headerlink" title="说一说select"></a>说一说select</h4>Go中的select可以理解为一个多路复用模型，当检测到有IO变化的时候，就会执行对应的case下的语句，类似于switch，不过select语句是用来监听和channel有关的IO操作，用于实现main主线程和goruntine之间的互动，在使用的时候如果不设置default默认条件的话，当没有IO操作发生的时候select语句就会一直阻塞，如果有一个或多个IO操作发生时，Go运行时会随机选择一个case执行，但此时将无法保证执行顺序；对于case语句，如果存在信道值为nil的读写操作，则该分支将被忽略，可以理解为相当于从select语句中删除了这个case；对于空的 select语句，会引起死锁；对于在 for中的select语句，不能添加 default，否则会引起cpu占用过高的问题。</li>
+</ul>
+</li>
+<li><h4 id="Golang-channel了解吗，channel的工作原理是什么？"><a href="#Golang-channel了解吗，channel的工作原理是什么？" class="headerlink" title="Golang channel了解吗，channel的工作原理是什么？"></a>Golang channel了解吗，channel的工作原理是什么？</h4><p><a target="_blank" rel="noopener" href="https://louyuting.blog.csdn.net/article/details/85231944?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-85231944-blog-122325256.pc_relevant_aa&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-85231944-blog-122325256.pc_relevant_aa&utm_relevant_index=1">链接</a></p>
+<p>Go不推荐用共享内存方式来通信，推荐使用通信的方式来共享内存。channel用于多个goroutine之间传递数据，且保证整个过程的并发安全性。管道分为无缓存的管道和有缓存的管道。无缓存管道的发送和接收是同步的，任意一个操作都无法离开另一个操作单独存在。否则就会发生deadlock死锁。有缓存管道的发送和接受可以不同步的，当通道中没有要接收的值时，接收动作会阻塞；当通道缓冲区满时发送操作会阻塞。底层的数据模型如下：
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://raw.githubusercontent.com/MagicTmac1/Picture_repo/master/202207291505806.png" >
+        </sapn>
+      </p>
+</li>
+</ul>
+<p>对一个已经被 <code>close</code> 过的 <code>channel</code> 进行<strong>接收</strong>操作依然可以接受到之前已经成功发送的数据；如果 <code>channel</code> 中已经没有数据的话将产生一个零值的数据。被关闭的通道不会被置为 <code>nil</code> 。如果尝试对已经关闭的通道进行发送，将会触发 <code>panic</code>。另外，如果我们试图关闭一个已经关闭了的通道，也会引发 <code>panic</code>。由于通道类型是引用类型，所以它的零值就是 <code>nil</code> 。换句话说，当我们只声明该类型的变量但没有用 <code>make</code> 函数对它进行初始化时，该变量的值就会是 <code>nil</code>。</p>
+<ul>
+<li><h4 id="谈一下map"><a href="#谈一下map" class="headerlink" title="谈一下map"></a>谈一下map</h4><p>链接<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_48826531/article/details/125907606?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165908031016782395396581%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165908031016782395396581&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-125907606-null-null.142%5Ev35%5Eexperiment_28w_v1&utm_term=go%20map%E5%BA%95%E5%B1%82&spm=1018.2226.3001.4187">map</a></p>
+<p>map是一个key—value键值对结构，作为无序键值对集合，map要求key必须是支持相等运算符(&#x3D;&#x3D;,!&#x3D;)的数据类型，如:数字、字符串、指针、数组、结构体以及对应的接口；对于切片、函数、通道类型这类具有引用语义的不能作为map的key值。map底层采用hash表结构，通过键值对进行映射。 键通过<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%93%88%E5%B8%8C&spm=1001.2101.3001.7020">哈希</a>函数生成哈希值，然后go底层的map数据结构就存储相应的hash值，进行索引，最终是在底层使用的数组存储key,和value。</p>
+<ul>
+<li><h4 id="GC（标记清理-gt-三色标记法-gt-混合写屏障）"><a href="#GC（标记清理-gt-三色标记法-gt-混合写屏障）" class="headerlink" title="GC（标记清理 -&gt; 三色标记法 -&gt; 混合写屏障）"></a>GC（标记清理 -&gt; 三色标记法 -&gt; 混合写屏障）</h4><p>堆<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%86%85%E5%AD%98&spm=1001.2101.3001.7020">内存</a>上分配的数据对象，不会再使用时，不会自动释放内存，就变成垃圾，在程序的运行过程中，如果不能及时清理，会导致越来越多的内存空间被浪费，导致系统性能下降。</p>
+<p>因此需要内存回收，内存回收分为两种方式</p>
+<p>1.手动释放占用的内存空间</p>
+<p>可能会出现的问题：<br>悬挂指针： 释放的早了，后续对数据的访问就会出错，因为对应的内存空间可能已经清空，重新分配，甚至是归还给操作系统了。<br>内存泄漏： 如果忘了释放，一直占用内存，导致内存泄漏。</p>
+<p>2.自动内存回收</p>
+<p>开发人员无需手动管理释放已经分配但是没有引用的对象内存，而由程序自动检测对象决定是否要回收其内存。</p>
+<p>系统如何检测哪些应该是被回收的数据对象呢？<br><strong>核心思想：</strong>程序中用得到的数据，一定是可以从栈或数据段这些根节点追踪得到的数据，追踪不到的数据，肯定用不到，也就是垃圾。</p>
+</li>
+</ul>
+<h5 id="标记清除法"><a href="#标记清除法" class="headerlink" title="标记清除法"></a>标记清除法</h5><p>  把根数据段上的数据作为root，基于他们进行进一步的追踪，追踪到的数据就进行标记，最后把没有标记的对象当作垃圾进行释放。</p>
+<p>  开启STW，<br>  从根节点出发，标记所有可达对象<br>  停止STW，然后回收所有未标记的对象。</p>
+<h5 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h5><p>  白灰黑</p>
+<p>  初始时，所有对象都为白色，<br>  GC开始，开启SWT，遍历堆栈root，将直接可达的对象标记为灰色，<br>  遍历灰色结点,将直接可达的对象标记为灰色，自身标记为黑色，<br>  继续执行第三步同样的步骤，直到所有能够访问到的结点都被标记为黑色，<br>  关闭SWT，回收所有白色标记的对象。<br>  如果没有SWT，程序正常执行，可能会有如下的情况，导致对象被误当作垃圾回收。<br>  白色对象本来被一个灰色对象引用，但是该灰色对象将该引用赋给了黑色对象，灰对白的引用断开。此时，由于不会对黑色对象的引用进行检测标记，即该白色节点即使被引用也无法被标记为灰色，最终当作垃圾处理掉。</p>
+<p>  三色标记法出现对象丢失，要满足以下两个条件：</p>
+<ul>
+<li>条件一：<strong>白色对象被黑色对象引用</strong></li>
+<li>条件二：<strong>灰色对象与白色对象之间的可达关系遭到破坏</strong></li>
+</ul>
+<p>  只要破坏两个中的任何一个不会导致对象丢失的发生。</p>
+<p>  两种不变式，如何破坏两个条件</p>
+<p>  <strong>强不变式：</strong> 不允许黑色对象引用白色对象<br>  <strong>弱不变式：</strong> 黑色对象可以引用白色对象，但是白色对象必须直接或间接被灰色对象引用。（保证白色对象一定会被扫描到）<br>  go对上述规则的两种实现机制：</p>
+<h5 id="插入写屏障"><a href="#插入写屏障" class="headerlink" title="插入写屏障"></a>插入写屏障</h5><p>  当一个对象引用另外一个对象时，将另外一个对象标记为灰色。</p>
+<p>  插入屏障仅会在堆内存中生效，不对栈内存空间生效，这是因为go在并发运行时，大部分的操作都发生在栈上，函数调用会非常频繁。数十万goroutine的栈都进行屏障保护自然会有性能问题。</p>
+<p>  如果一个栈对象 黑色引用白色对象，白色对象依然会被当作垃圾回收。<br>  因此，最后还需要对栈内存 进行STW，重新rescan，确保所有引用的被引用的栈对象都不会被回收。</p>
+<h5 id="删除写屏障"><a href="#删除写屏障" class="headerlink" title="删除写屏障"></a>删除写屏障</h5><p>  当一个白色对象被另外一个对象时解除引用时，将该被引用对象标记为灰色（白色对象被保护）</p>
+<p>  缺点：产生内存冗余，如果上述该白色对象没有被别的对象引用，相当于还是垃圾，但是这一轮垃圾回收并没有处理掉他。</p>
+<h5 id="混合写屏障法"><a href="#混合写屏障法" class="headerlink" title="混合写屏障法"></a>混合写屏障法</h5><p>  GC刚开始的时候，会将栈上的可达对象全部标记为黑色。</p>
+<p>  GC期间，任何在栈上新创建的对象，均为黑色。<br>  将栈上的可达对象全部标黑，最后无需对栈进行STW，就可以保证栈上的对象不会丢失</p>
+<p>  堆上被删除的对象标记为灰色</p>
+<p>  堆上新添加的对象标记为灰色</p>
+<p>  总结<br>  go 1.3 之前采用标记清除法，需要STW<br>  go 1.5 采用三色标记法，插入写屏障机制（只在堆内存中生效），最后仍需对栈内存进行STW<br>  go 1.8 采用混合写屏障机制，屏障限制只在堆内存中生效。避免了最后节点对栈进行STW的问题，提升了GC效率</p>
+</li>
+</ul>
 
         <!-- 分类文章 -->
         
@@ -217,6 +306,19 @@ D。有了vendor目录后，打包当前的工程代码到其他机器的$GOPATH
                 </li>
               
               
+            
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/07/21/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-categoris-bottom-link">
+                  算法面试题
+                </a>
+                </li>
+              
+              
+            
+            
             
             
             </ul>

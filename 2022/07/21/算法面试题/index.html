@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  面试错题 |    欧阳灿的博客</title>
+  <title>  算法面试题 |    欧阳灿的博客</title>
   <meta name="description" content="不但要记录自己的努力，还要记录生活中的美好。">
   <!-- 标签页图标 -->
   
@@ -126,38 +126,129 @@
 <div class="body-outer">
   <div class="body-inner">
     
-  
-<section class="img-show-outer">
-    <section class="img-show-inner">
-          
-          
-          <div class="img-show-post">
-            <div class="img-show-post-cover">
-              <span class="lazyload-img-span">
-              <a  href="/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/">
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">算法面试题</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Jul 21 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <ul>
+<li>给你一个整数数组 nums ，请计算数组的 中心下标 。数组 中心下标 是数组的一个下标，其左侧所有元素相加的和等于右侧所有元素相加的和。如果中心下标位于数组最左端，那么左侧数之和视为 0 ，因为在下标的左侧不存在元素。这一点对于中心下标位于数组最右	端同样适用。如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 .</li>
+</ul>
+<h4 id="方法一：前缀和"><a href="#方法一：前缀和" class="headerlink" title="方法一：前缀和"></a>方法一：前缀和</h4><p>思路</p>
+<p>记数组的全部元素之和为 total，当遍历到第 i 个元素时，设其左侧元素之和为 sum，则其右侧元素之和为 total - num[i] - sum.左右侧元素相等即为sum&#x3D;total−nums[i]-sum,即 2sum+num[i]&#x3D;total。</p>
+<pre><code>func pivotIndex(nums []int) int &#123;
+    total := 0
+    for _, v := range nums &#123;
+        total += v
+    &#125;
+    sum := 0
+    for i, v := range nums &#123;
+        if 2*sum+v == total &#123;
+            return i
+        &#125;
+        sum += v
+    &#125;
+    return -1
+&#125;
+</code></pre>
+
+        <!-- 分类文章 -->
+        
+          <div class="post-categoris-bottom">
+            <div class="post-categoris-name">面试错题</div>
+            <ul>
+            
+            
               
-                
-                <img data-src="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/01.jpg" class="img-show-post-cover-class">
+            
+            
+            
               
-              </a>
-              </span>
-            </div>
-            <div class="img-show-post-intro">
-             <a  href="/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/">
-            <div class="img-show-post-title animate__animated  animate__fadeInUp">go面试错题</div>
-            </a>
-            <div class="img-show-post-date animate__animated  animate__fadeInUp">Jul 21 2022 </div>
-            </div>
+            
+            
+            
+              
+            
+            
+            
+            
+            
+              
+                <li class="base">
+                  <a  href="/2022/07/21/go%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/" class="post-categoris-bottom-link">
+                  go面试错题
+                </a>
+                </li>
+              
+              
+            
+            
+            
+              
+                <li class="me base">
+                  <a  href="/2022/07/21/%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-categoris-bottom-link">
+                  算法面试题
+                </a>
+                </li>
+              
+              
+            
+            
+            
+            
+            </ul>
+
           </div>
-          
-         
-    </section>
+
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
     
-</section>
-
-
-
-
+    <div class="bottom-comments-outer">
+      <div class="bottom-comments-inner">
+        <!-- valine -->
+        
+        <!-- Gitalk -->
+        
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" style="margin-top: 100px;"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '5f07bbb19c182716513e',
+        clientSecret: '4cad15f3f8d8c9fb8b1056b37a1f08815f25efbb',
+        id: window.location.pathname,
+        repo: 'MagicTmac1.github.io',
+        owner: 'MagicTmac1',
+        admin: 'MagicTmac1'
+    })
+    gitalk.render('gitalk-container')
+</script>
+        
+        <!-- livere -->
+        
+        </div>
+      </div>
+    
+  </div>
+</article>
   </div>
 </div>
 

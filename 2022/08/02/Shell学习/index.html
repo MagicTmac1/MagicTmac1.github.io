@@ -1,0 +1,503 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  Shell学习.md |    欧阳灿的博客</title>
+  <meta name="description" content="不但要记录自己的努力，还要记录生活中的美好。">
+  <!-- 标签页图标 -->
+  
+  <link rel="shortcut icon" href="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg95.699pic.com%2Felement%2F40097%2F3987.png_860.png&refer=http%3A%2F%2Fimg95.699pic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659769333&t=2fa07943c842733641f4b355826cdfc5" type="image/x-icon">
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css">
+
+    
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          欧阳灿的博客
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              主页
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              博客
+            </li>
+          </a>
+        
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="sort">
+             分类
+             <div class="categories-outer " id="sort-div">
+               <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/Categories/%E9%9D%A2%E8%AF%95%E9%94%99%E9%A2%98/">面试错题</a></li></ul>
+             </div>
+          </li>
+        
+        
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        欧阳灿的博客
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>主页</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>博客</span>
+      </div>
+    </a>
+  
+  
+    <a href="/search">  
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+    
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">Shell学习.md</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">Aug 02 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <h4 id="了解："><a href="#了解：" class="headerlink" title="了解："></a>了解：</h4><ul>
+<li>shell是帮助应用程序操作Linux内核的工具。</li>
+<li>Shell解析器有很多(bash,zsh…)，但是默认的是bash(mac默认zsh)，sh的软连接是bash。</li>
+<li>shell文件的开头要指定解析器，格式为：<code>#!/bin/bash</code></li>
+</ul>
+<h4 id="基本变量语法："><a href="#基本变量语法：" class="headerlink" title="基本变量语法："></a>基本变量语法：</h4><ul>
+<li>定义变量，<code>A=2</code>，注意这里的等号两边没有空格</li>
+<li>撤销变量：unset A</li>
+<li>声明静态只读变量：readonly A&#x3D;3，注意静态只读变量不能撤销</li>
+</ul>
+<h4 id="变量命名规则："><a href="#变量命名规则：" class="headerlink" title="变量命名规则："></a>变量命名规则：</h4><ul>
+<li>和大部分语言中一样，由字母、数字和下划线组成，但是不能由数字开头，环境变量名称建议大写（如：$HOME）</li>
+<li>等号两侧不能有空格</li>
+<li>在bash解释器中，变量默认都是字符串类型，无法直接进行数值运算。</li>
+<li>变量的值如果有空格需要用双引号或者单引号扩起来。</li>
+<li>把变量提升为全局变量：export 变量名（export  GOPATH）</li>
+</ul>
+<h4 id="特殊变量："><a href="#特殊变量：" class="headerlink" title="特殊变量："></a><strong>特殊变量</strong>：</h4><ul>
+<li>**<code>$n</code>**：n代表数字，其中$0为当前shell脚本名称，1-9为当前命令后面添加的参数，十以上的参数要用大括号表示，如${10}。</li>
+<li>**<code>$#</code>**：代表当前所有的参数个数，没有参数则为0。</li>
+<li>**<code>$*与$@</code><strong>：两个都是获取当前所有的参数列表，只不过</strong><code>*</code><strong>号是一次性获取，把所有的参数看成一个整体，而</strong>@**是一个个的获取，区分对待。</li>
+<li>**<code>$?</code>**：返回一个数值，如果为0则表示上一条shell语句执行成功，如果不为0那么代表执行失败。</li>
+</ul>
+<h4 id="‘，“，-96-符号区分"><a href="#‘，“，-96-符号区分" class="headerlink" title="‘，“，&#96;符号区分"></a>‘，“，&#96;符号区分</h4><p>在bash中“空格”是一种很特殊的字符，比如在bash中这样定义<code>str=this is String</code>，这样就会报错，为了避免出错就得使用单引号’’和双引号””。</p>
+<p>单引号’’，双引号””的区别是单引号’’剥夺了所有字符的特殊含义，单引号’’内就变成了单纯的字符。双引号””则对于双引号””内的参数替换($)和命令替换(&#96;&#96;)是个例外。</p>
+<p>比如说 :</p>
+<pre><code>str=&quot;hello&quot;   
+echo &#39;$str&#39;
+</code></pre>
+<p>结果就是$str，但是改成双引号的话，<code>echo &quot;$str&quot;</code>，结果就是hello</p>
+<p>&#96;&#96;：反引号（esc键下方的那个键），当在脚本中需要执行一些指令并且将执行的结果赋给变量的时候需要使用“反引号”。</p>
+<p>例如：</p>
+<pre><code class="shell">#!/bin/bash
+str=`date +&#39;%Y%m%d&#39;`
+echo $str
+20220802
+</code></pre>
+<h4 id="运算符："><a href="#运算符：" class="headerlink" title="运算符："></a>运算符：</h4><ul>
+<li><p>基本语法：</p>
+<ol>
+<li>“$((运算式))”或“$[运算式]”</li>
+<li>expr + - <code>\*</code> &#x2F; % 分别对应加减乘除和取余，注意这里的乘号是斜杠加*****号，并且这里的运算符之间是需要有空格的。</li>
+</ol>
+</li>
+<li><p>案例：</p>
+<ol>
+<li><p>​	(2+3)*4: </p>
+<pre><code class="shell">1.result=$[(2+3)*4]
+2.expr `expr 2 + 3` \* 4
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="条件判断："><a href="#条件判断：" class="headerlink" title="条件判断："></a>条件判断：</h4><ul>
+<li><p>基本语法：</p>
+<p><code>[ condition ]</code>，注意condition前后要有空格。条件非空即为true，不非空返回false。</p>
+</li>
+<li><p>常用条件判断：</p>
+<pre><code class="shell">= ：字符串比较；-lt：(less than小于)；-le：(less equal小于等于)；-eq：(equal等于)；
+-gt：(greater than大于)；-ge(greater equal大于等于)；-ne(not equal不等于)。
+</code></pre>
+</li>
+<li><p>按照文件权限进行判断：</p>
+<pre><code class="shell">-r，-w，-x：分别代表有读、写、可执行的权限
+</code></pre>
+</li>
+<li><p>按照文件类型进行判断：</p>
+<pre><code>-f：文件存在，且是一个常规的文件；-e：文件存在exitense；-d：文件存在，且是一个目录directory
+</code></pre>
+</li>
+<li><p>多条件判断：（&amp;&amp;表示前一条命令执行成功时，才执行后一条命令，||表示上一条命令执行失败后才执行下一条命令）</p>
+</li>
+<li><p>例子：</p>
+<pre><code class="shell">1.判断23是否大于22:[ 23 gt 22 ]
+2.判断文件是否有写权限：[ -w helloworld.sh ]
+3.判断/home/self/hello.sh是否存在：[ -e /home/self/hello.sh ]
+3.[ condition ] &amp;&amp; echo OK || echo “not ok”
+</code></pre>
+</li>
+</ul>
+<h4 id="流程控制："><a href="#流程控制：" class="headerlink" title="流程控制："></a>流程控制：</h4><ol>
+<li><h5 id="if判断："><a href="#if判断：" class="headerlink" title="if判断："></a>if判断：</h5><pre><code class="shell">if [ command ];then
+   符合该条件执行的语句
+elif [ command ];then
+   符合该条件执行的语句
+else
+   符合该条件执行的语句
+fi
+</code></pre>
+<p>或者</p>
+<pre><code class="shell">if [ command ]
+then
+   符合该条件执行的语句
+elif [ command ]
+then
+   符合该条件执行的语句
+else
+   符合该条件执行的语句
+fi
+</code></pre>
+</li>
+<li><h4 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h4><p>基本语法：</p>
+<pre><code class="shell">case 变量 in
+条件 1)
+      执行代码块1
+      ;;
+条件 2)
+      执行代码块2
+      ;;
+条件 3)
+      执行代码块3
+      ;;
+*)
+      无匹配后命令序列
+ esac
+</code></pre>
+</li>
+<li><h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><pre><code class="shell">1.c语言风格
+for ((i=1; i&lt;=100; i++)) #这里用双括号将循环条件扩起来
+do
+    echo $i
+done
+2.python风格
+for i in &#123;1..100&#125; #或者这里用之前提到的$*、$@。	
+do
+    echo $i
+done
+3.seq使用
+for i `seq 1 100`
+do
+    echo $i
+done
+</code></pre>
+</li>
+<li><h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><pre><code class="shell">whilei [ condition ]
+do
+    程序
+done
+</code></pre>
+</li>
+</ol>
+<h4 id="read读取控制台输入"><a href="#read读取控制台输入" class="headerlink" title="read读取控制台输入"></a>read读取控制台输入</h4><ul>
+<li><p>语法：read(选项)(参数)</p>
+<pre><code>选项：
+-p：指定读取值时的提示符
+-t：指定读取值时等待的时间（秒）
+参数：
+变量：指定读取值的变量名
+</code></pre>
+</li>
+</ul>
+<h4 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h4><ul>
+<li><p><code>basename</code>：用法：basename string&#x2F;pathname suffix ，如果有后缀suffix的话，那么会将string或者pathname中的suffix去除。</p>
+<pre><code class="shell">basename /home/ouyangcan/test.sh -&gt; /home/ouyangcan/test.sh
+basename /home/ouyangcan/test.sh .sh -&gt; /home/ouyangcan/test
+</code></pre>
+</li>
+<li><p><code>dirname</code>：用法：dirname 文件绝对路径 （从给定的包含文件名的绝对路径中去除掉文件名，返回剩下的目录部分。）</p>
+<pre><code>dirname /home/ouyangcan/test.sh -&gt; /home/ouyangcan
+</code></pre>
+</li>
+</ul>
+<h4 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h4><ul>
+<li>语法：</li>
+</ul>
+<pre><code>[function] funname[()]
+&#123;
+    Action;
+    [return int];
+&#125;
+funname #最后通过funname来调用
+注：
+1.其中中括号扩起来的部分都是可写可不写的部分。
+2.要想调用函数，必须先声明，shell脚本逐行运行，不会预先编译。
+3.函数返回值只能通过$?系统变量获得，可以显示加return返回，不加的话就以最后一条语句的运行结果作为返回值。return后跟0～255
+</code></pre>
+<h4 id="shell工具"><a href="#shell工具" class="headerlink" title="shell工具"></a>shell工具</h4><ul>
+<li><strong>cut</strong>：</li>
+</ul>
+<p>​	在文件中负责剪切数据用，从文件的每一行剪切字节、字符和字段将他们输出。</p>
+<pre><code class="shell">cut [选项参数] filename
+-f:列号，提取多少列
+-d:分隔符，按照指定分隔符分割列
+eg：cut -d &quot; &quot; -f 1,2 cut.txt	(-2表示从1到2，2-表示2和2后面的所有列)
+</code></pre>
+<ul>
+<li><strong>sed</strong>：</li>
+</ul>
+<p>​	sed是一种流编辑器，一次处理一行内容，处理时把当前处理行存储在临时缓冲区中，成为“模式空间”，接着用sed命令处理缓冲区中的内容，处理完成后，把缓冲区的内容送完屏幕，接着处理下一行，不断重复直到文件末尾，而文件内容并没有改变，除非你使用重定向存储输出。</p>
+<pre><code>sed [选项参数] &#39;command&#39; filename
+选项参数：-e，直接在指令模式上进行的动作编辑，只有一个命令不需要加-e，多个命令则需要逐次在每个命令钱添加-e。
+command：
+    a：a的后面可以接字串，在下一行出现。 #sed &quot;2a mei mv&quot; sed.txt,在第二行插入mei nv
+    d：删除 #sed &quot;/wo/d&quot; sed.txt,删除包含wo的行
+    s：查找并替换	#sed &quot;s/wo/ni/g&quot; sed.txt	#将文件中的wo全部替换成ni，如果不加/g则只替换第一个wo。g表示global。
+</code></pre>
+<ul>
+<li><strong>awk</strong>：</li>
+</ul>
+<p>​	一个强大的文本分析工具，把文件逐行的读入，以空格为<strong>默认</strong>分隔符将每行切片，切开的部分再进行分析处理。</p>
+<pre><code>awk [选项参数] &#39;pattern1&#123;action1&#125; pattern2&#123;action2&#125; ...&#39; filename
+pattern:表示awk在数据中查找的内容，就是匹配模式。
+选项参数：
+    -F：指定输入文件的分隔符
+    -v：赋值一个用户定义变量 #-v i=1
+    $n：n表示数字，如果为0的话表示所有的内容，其他的则为第n列的内容。
+    eg：
+    awk -F : &#39;BEGIN&#123;print &quot;user,shell&quot;&#125; &#123;print $1&quot;,&quot;$7&#125; END&#123;print &quot;ouyangcan,/bin/nbsh&quot;&#125;&#39; passwd
+内置变量：
+    FILENAME：文件名；NR：已读的记录数；NF：浏览记录的域的个数（切割后列的个数）
+    eg：awk -F : &#39;&#123;print FILENAME &quot;,&quot; NR &quot;,&quot; NF&#125;&#39; passwd
+</code></pre>
+<ul>
+<li><strong>sort</strong>：</li>
+</ul>
+<p>​	将文件进行排序，并将排序结果标准输出。</p>
+<pre><code>sort (选项)(参数)
+选项：
+    -n：依照数值的大小排序
+    -r：依照数值的顺序排序
+    -t：设置排序时使用的分隔字符
+    -k：指定需要排序的列
+eg:
+    sort -t : -nrk 2 sort.sh
+</code></pre>
+<ul>
+<li><p>grep:</p>
+<p>  grep （global search regular expression(RE) and print out the</p>
+</li>
+</ul>
+<p>line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。用于过滤&#x2F;搜索的特定字符。可使用正则表达式能多种命令配合使用，使用上十分灵活。</p>
+<ul>
+<li><p>getopts:</p>
+<p>经常和while和case一起使用，一般用法：</p>
+<pre><code class="shell">while getopts &#39;h:j:m:u&#39; OPT; do
+    case $OPT in
+        j) S_DIR=&quot;$OPTARG&quot;;;
+        m) D_DIR=&quot;$OPTARG&quot;;;
+        u) upload=&quot;true&quot;;;
+        h) func;;
+        ?) func;;
+    esac
+done
+
+echo $S_DIR
+echo $D_DIR
+echo $upload
+
+sh test.sh -j /data/usw/web -m /opt/data/web	#选项后面跟着的就是OPTARG。
+##输出结果
+/data/usw/web
+/opt/data/web
+false
+</code></pre>
+</li>
+<li><p>ps：</p>
+<p>Linux中的ps命令是<code>Process Status</code>的缩写。ps命令用来列出系统中当前运行的那些进程。ps 为我们提供了进程的一次性的查看，它所提供的查看结果并不动态连续的；ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。</p>
+</li>
+</ul>
+<pre><code>使用方式：ps [options] [--help]
+说明：显示瞬间行程 (process) 的动态
+参数：ps的参数非常多, 在此仅列出几个常用的参数并大略介绍含义
+-A 列出所有的进程
+-w 显示加宽可以显示较多的资讯
+-au 显示较详细的资讯
+-aux 显示所有包含其他使用者的行程
+</code></pre>
+
+        <!-- 分类文章 -->
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+    <div class="bottom-comments-outer">
+      <div class="bottom-comments-inner">
+        <!-- valine -->
+        
+        <!-- Gitalk -->
+        
+          <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container" style="margin-top: 100px;"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '5f07bbb19c182716513e',
+        clientSecret: '4cad15f3f8d8c9fb8b1056b37a1f08815f25efbb',
+        id: window.location.pathname,
+        repo: 'MagicTmac1.github.io',
+        owner: 'MagicTmac1',
+        admin: 'MagicTmac1'
+    })
+    gitalk.render('gitalk-container')
+</script>
+        
+        <!-- livere -->
+        
+        </div>
+      </div>
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+    <p>世界上只有一种英雄主义，那就是了解生命而且热爱生命的人。-——罗曼罗兰</p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/MagicTmac1" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:ouyangcan0127@163.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+    
+      
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+</body>
+</html>
